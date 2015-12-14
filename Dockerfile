@@ -2,7 +2,7 @@ FROM chetbox/ghoulio
 MAINTAINER chetbox
 
 # Install NodeJS
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
+RUN wget -qO- https://deb.nodesource.com/setup_4.x | bash -
 RUN apt-get install -y nodejs
 RUN apt-get autoremove -y && apt-get clean all
 
