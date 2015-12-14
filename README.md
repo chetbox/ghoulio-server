@@ -23,7 +23,7 @@ $ curl --data "url=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dboo&script=Array.
 
 See [chetbox/ghoulio](https://github.com/chetbox/ghoulio) for more scripting information.
 
-## Options
+## Environment variables
 
 - `PORT` - The port to run the web server on.
 - `PAGE_TIMEOUT` - The number of milliseconds before closing the page.
