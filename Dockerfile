@@ -11,5 +11,6 @@ WORKDIR /app
 RUN npm install
 
 ENV PORT 80
-ENTRYPOINT ["/bin/bash"]
-CMD ["/usr/bin/node", "index.js"]
+ENTRYPOINT ["node"]
+CMD ["index.js"]
+
