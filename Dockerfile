@@ -1,4 +1,4 @@
-FROM chetbox/ghoulio
+FROM chetbox/ghoulio:1.1.1
 MAINTAINER chetbox
 
 # Install NodeJS
