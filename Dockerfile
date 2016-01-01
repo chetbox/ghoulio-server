@@ -2,8 +2,9 @@ FROM chetbox/ghoulio:1.1.1
 MAINTAINER chetbox
 
 # Install Leiningen
-RUN mkdir -p /opt/bin
-RUN wget -q https://deb.nodesource.com/setup_4.x -O /opt/bin/lein
+RUN mkdir -p /opt/bin && \
+    wget -q https://deb.nodesource.com/setup_4.x -O /opt/bin/lein && \
+    chmod +x /opt/bin/lein
 ENV PATH $PATH:/opt/bin
 
 ADD . /server
