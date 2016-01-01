@@ -1,16 +1,17 @@
 FROM chetbox/ghoulio:1.1.1
 MAINTAINER chetbox
 
-# Install NodeJS
-RUN wget -qO- https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get install -y nodejs
-RUN apt-get autoremove -y && apt-get clean all
+# Install Leiningen
+RUN mkdir -p /opt/bin
+RUN wget -q https://deb.nodesource.com/setup_4.x -O /opt/bin/lein
+ENV PATH $PATH:/opt/bin
 
-ADD ./app /server
+ADD . /server
 WORKDIR /server
-RUN npm install
+
+# Build
+RUN lein uberjar
 
 ENV PORT 80
-ENTRYPOINT ["node"]
-CMD ["index.js"]
-
+CMD java -jar target/ghoulio-server-*-standalone.jar
+EXPOSE 80
