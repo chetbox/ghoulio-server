@@ -3,7 +3,7 @@ MAINTAINER chetbox
 
 # Install Leiningen
 RUN mkdir -p /opt/bin && \
-    wget -q https://deb.nodesource.com/setup_4.x -O /opt/bin/lein && \
+    wget -q https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O /opt/bin/lein && \
     chmod +x /opt/bin/lein
 ENV PATH $PATH:/opt/bin
 
