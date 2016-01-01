@@ -1,6 +1,11 @@
 FROM chetbox/ghoulio:1.1.1
 MAINTAINER chetbox
 
+# Insall Java
+RUN apt-get update && \
+    apt-get -y install openjdk-7-jre-headless && \
+    apt-get clean all
+
 # Install Leiningen
 RUN mkdir -p /opt/bin && \
     wget -q https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O /opt/bin/lein && \
