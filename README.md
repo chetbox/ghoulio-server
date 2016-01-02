@@ -16,7 +16,7 @@ e.g.
 
 ```shell
 # Print Google search results
-$ docker run -e PORT=8000 -p 8000 chetbox/ghoulio-server
+$ docker run -e PORT=8000 -p 8000:8000 chetbox/ghoulio-server
 $ curl --data "url=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dboo&script=Array.prototype.slice.call(document.querySelectorAll('h3.r'))%0A.forEach(function(a)%20%7B%0A%20%20console.log(a.textContent)%3B%0A%7D)%3B%0Aresolve()%3B" http://localhost:8000/open
 ```
 
