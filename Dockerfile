@@ -20,5 +20,6 @@ WORKDIR /server
 RUN lein uberjar
 
 ENV PORT 80
-CMD java -jar target/ghoulio-server-*-standalone.jar
+ENTRYPOINT []
+CMD ["/bin/bash", "-c", "java -jar target/ghoulio-server-*-standalone.jar"]
 EXPOSE 80
