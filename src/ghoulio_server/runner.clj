@@ -14,7 +14,10 @@
 
 (defn -open!
   [job]
-  (ghoulio/open! (:url job) (:script job)))
+  (ghoulio/open!
+    (:url job)
+    (or (:callback job) "")
+    (:script job)))
 
 (defn open!
   [channel page]

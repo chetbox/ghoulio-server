@@ -18,14 +18,15 @@
 (def ^:const TIMEOUT-SCRIPT (str "setTimeout(function(){ fail('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
 
 (defn- open-process!
-  [url user-script]
+  [url callback-url user-script]
   (sh/proc SLIMERJS-PATH
     GHOULIO-PATH
     url
+    callback-url
     (str TIMEOUT-SCRIPT "\n\n" user-script)))
 
 (defn open!
-  [url user-script]
-  (let [process (open-process! url user-script)]
+  [url callback-url user-script]
+  (let [process (open-process! url callback-url user-script)]
     (sh/stream-to-out process :out)
     (sh/stream-to process :err *err*)))
