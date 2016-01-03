@@ -16,7 +16,7 @@
   [job]
   (ghoulio/open!
     (:url job)
-    (or (:callback job) "")
+    (:callback job)
     (:script job)))
 
 (defn open!

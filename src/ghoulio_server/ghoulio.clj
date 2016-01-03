@@ -27,6 +27,6 @@
 
 (defn open!
   [url callback-url user-script]
-  (let [process (open-process! url callback-url user-script)]
+  (let [process (open-process! url (or callback-url "") user-script)]
     (sh/stream-to-out process :out)
     (sh/stream-to process :err *err*)))
