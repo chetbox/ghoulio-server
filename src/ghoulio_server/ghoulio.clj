@@ -2,17 +2,17 @@
   (:require [clojure.java.io :refer [as-file]]
             [me.raynes.conch.low-level :as sh]))
 
-(def ^:const SLIMERJS-PATH
+(def SLIMERJS-PATH
   (get (System/getenv) "SLIMERJS_PATH" "/usr/bin/slimerjs"))
 
-(def ^:const GHOULIO-PATH
+(def GHOULIO-PATH
   (get (System/getenv) "GHOULIO_PATH" "/app/ghoulio.js"))
 
-(def ^:const GHOULIO-PAGE-TIMEOUT
+(def GHOULIO-PAGE-TIMEOUT
   (Integer/parseInt
     (get (System/getenv) "GHOULIO_PAGE_TIMEOUT" "60000")))
 
-(def ^:const TIMEOUT-SCRIPT (str "setTimeout(function(){ reject('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
+(def TIMEOUT-SCRIPT (str "setTimeout(function(){ reject('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
 
 (defn- open-process!
   [url callback-url user-script]

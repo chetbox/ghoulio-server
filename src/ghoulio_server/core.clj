@@ -6,7 +6,6 @@
 
 (defn -main
   [& _]
-  (let [port-str (or (System/getenv "PORT")
-                     "1337")]
-  (log/info "Starting server on port" port-str)
-  (run-server app {:port (Integer/parseInt port-str)})))
+  (let [port-str (get (System/getenv) "PORT" "1337")]
+    (log/info "Starting server on port" port-str)
+    (run-server app {:port (Integer/parseInt port-str)})))
