@@ -3,11 +3,11 @@
             [ghoulio-server.ghoulio :as ghoulio]
             [taoensso.timbre :as log]))
 
-(def ^:const GHOULIO_MAX_QUEUE_SIZE
+(def GHOULIO_MAX_QUEUE_SIZE
   (Integer/parseInt
     (get (System/getenv) "GHOULIO_MAX_QUEUE_SIZE" "5")))
 
-(def ^:const GHOULIO_WORKERS
+(def GHOULIO_WORKERS
   (Integer/parseInt
     (get (System/getenv) "GHOULIO_WORKERS" "1")))
 
