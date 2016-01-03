@@ -5,13 +5,11 @@
 
 (def ^:const GHOULIO_MAX_QUEUE_SIZE
   (Integer/parseInt
-    (or (System/getenv "GHOULIO_MAX_QUEUE_SIZE")
-        "5")))
+    (get (System/getenv) "GHOULIO_MAX_QUEUE_SIZE" "5")))
 
 (def ^:const GHOULIO_WORKERS
   (Integer/parseInt
-    (or (System/getenv "GHOULIO_WORKERS")
-        "1")))
+    (get (System/getenv) "GHOULIO_WORKERS" "1")))
 
 (defn -open!
   [page]
