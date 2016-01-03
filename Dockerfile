@@ -1,4 +1,4 @@
-FROM chetbox/ghoulio:1.1.1
+FROM chetbox/ghoulio:2.2.3
 MAINTAINER chetbox
 
 # Insall Java

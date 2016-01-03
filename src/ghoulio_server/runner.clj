@@ -13,7 +13,10 @@
 
 (defn -open!
   [page]
-  (ghoulio/open! (:url page) (:script page)))
+  (ghoulio/open!
+    (:url page)
+    (:callback page)
+    (:script page)))
 
 (defn open!
   [channel page]

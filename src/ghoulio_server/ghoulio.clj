@@ -12,17 +12,18 @@
   (Integer/parseInt
     (get (System/getenv) "GHOULIO_PAGE_TIMEOUT" "60000")))
 
-(def ^:const TIMEOUT-SCRIPT (str "setTimeout(function(){ fail('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
+(def ^:const TIMEOUT-SCRIPT (str "setTimeout(function(){ reject('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
 
 (defn- open-process!
-  [url user-script]
+  [url callback-url user-script]
   (sh/proc SLIMERJS-PATH
     GHOULIO-PATH
     url
+    callback-url
     (str TIMEOUT-SCRIPT "\n\n" user-script)))
 
 (defn open!
-  [url user-script]
-  (let [process (open-process! url user-script)]
+  [url callback-url user-script]
+  (let [process (open-process! url (or callback-url "") user-script)]
     (sh/stream-to-out process :out)
     (sh/stream-to process :err *err*)))
