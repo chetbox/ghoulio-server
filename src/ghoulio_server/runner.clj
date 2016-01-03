@@ -1,35 +1,39 @@
 (ns ghoulio-server.runner
-  (:require [clojure.core.async :refer [>!! <! chan go]]
-            [ghoulio-server.ghoulio :as ghoulio]))
+  (:require [clojure.core.async :refer [>!! <! chan go-loop]]
+            [ghoulio-server.ghoulio :as ghoulio]
+            [taoensso.timbre :as log]))
 
 (def ^:const GHOULIO_MAX_QUEUE_SIZE
   (Integer/parseInt
-    (or (System/getenv "GHOULIO_MAX_QUEUE_SIZE")
-        "5")))
+    (get (System/getenv) "GHOULIO_MAX_QUEUE_SIZE" "5")))
 
 (def ^:const GHOULIO_WORKERS
   (Integer/parseInt
-    (or (System/getenv "GHOULIO_WORKERS")
-        "1")))
+    (get (System/getenv) "GHOULIO_WORKERS" "1")))
 
 (defn -open!
-  [job]
+  [page]
   (ghoulio/open!
-    (:url job)
-    (:callback job)
-    (:script job)))
+    (:url page)
+    (:callback page)
+    (:script page)))
 
 (defn open!
   [channel page]
   {:pre [(:url page)
          (:script page)]}
+  (log/debugf "Open %s requested" (:url page))
   (>!! channel page))
 
 (defn create
   []
+  (log/infof "Starting %d workers" GHOULIO_WORKERS)
   (let [channel (chan GHOULIO_MAX_QUEUE_SIZE)]
-    (dotimes [_ GHOULIO_WORKERS]
-      (go
-        (while true
-          (-open! (<! channel)))))
+    (dotimes [i GHOULIO_WORKERS]
+      (go-loop []
+        (let [page (<! channel)]
+          (log/debugf "Opening %s on worker %d" (:url page) i)
+          (-open! page)
+          (log/tracef "Done with %s on worker %d" (:url page) i))
+        (recur)))
     channel))

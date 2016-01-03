@@ -8,7 +8,8 @@
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-json "0.4.0"]
                  [me.raynes/conch "0.8.0"]
-                 [http-kit "2.1.18"]]
+                 [http-kit "2.1.18"]
+                 [com.taoensso/timbre "4.2.0"]]
   :main ghoulio-server.core
   :aot [ghoulio-server.core]
   :plugins [[lein-ring "0.9.7"]]
