@@ -12,7 +12,7 @@
   (Integer/parseInt
     (get (System/getenv) "GHOULIO_PAGE_TIMEOUT" "60000")))
 
-(def ^:const TIMEOUT-SCRIPT (str "setTimeout(function(){ fail('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
+(def ^:const TIMEOUT-SCRIPT (str "setTimeout(function(){ reject('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
 
 (defn- open-process!
   [url callback-url user-script]
