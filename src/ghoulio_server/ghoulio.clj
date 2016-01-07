@@ -14,10 +14,7 @@
 
 (def TIMEOUT-SCRIPT
   (format
-    (str
-      "setTimeout(function(){ "
-      "reject('Timed out after %ds'); "
-      "}, %d);")
+    "setTimeout(function(){ reject('Timed out after %ds'); }, %d);"
     (/ GHOULIO-PAGE-TIMEOUT 1000)
     GHOULIO-PAGE-TIMEOUT))
 
