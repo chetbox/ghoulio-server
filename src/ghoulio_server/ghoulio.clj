@@ -12,7 +12,11 @@
   (Integer/parseInt
     (get (System/getenv) "GHOULIO_PAGE_TIMEOUT" "60000")))
 
-(def TIMEOUT-SCRIPT (str "setTimeout(function(){ reject('Timed out') }, " GHOULIO-PAGE-TIMEOUT ");"))
+(def TIMEOUT-SCRIPT
+  (format
+    "setTimeout(function(){ reject('Timed out after %ds'); }, %d);"
+    (/ GHOULIO-PAGE-TIMEOUT 1000)
+    GHOULIO-PAGE-TIMEOUT))
 
 (defn- open-process!
   [url callback-url user-script]
